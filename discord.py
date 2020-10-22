@@ -1,12 +1,10 @@
 import asyncio
 import discord
-from discord.ext import commands
-import os
 
 
 client = discord.Client()
 
-token = "" # 자신의 디스코드 ID
+token = "" # 자신의 디스코드 봇 토큰넣기
 
 @client.event
 async def on_ready():
@@ -21,9 +19,11 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    if message.author.bot:
+        return None
 
-if message.content.startswith("!채팅청소"):
-        if (message.author.id == ): # 자신의 디스코드 ID
+    if message.content.startswith("!채팅청소"):
+        if (message.author.id == 435025892650123277): # 자신의 디스코드 ID
             try:
                 amount = message.content[6:]
                 await message.channel.purge(limit=int(amount))
@@ -33,8 +33,8 @@ if message.content.startswith("!채팅청소"):
         else:
             await message.channel.send("권한이 없습니다.")
             
-if (message.content.startswith("!채팅")):
-        if (message.author.id == ): # 자신의 디스코드 ID
+    if (message.content.startswith("!채팅")):
+        if (message.author.id == 435025892650123277):
             try:
                 colour = message.content.split(" ")[1].split("\n")[0]
                 content = message.content.split("\n")[1:]
